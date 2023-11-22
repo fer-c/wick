@@ -157,7 +157,7 @@ func TestListToWampList(t *testing.T) {
 
 	expectedList := wamp.List{
 		"string", 1, 1.1, true,
-		"123", "123", "true",
+		[]byte("123"), []byte("123"), []byte("true"),
 		// converted from JSON
 		[]interface{}{"group_1", "group_2", 1.1, true},
 		map[string]interface{}{"firstKey": "value", "secondKey": 2.1},
@@ -182,7 +182,7 @@ func TestDictToWampDict(t *testing.T) {
 
 	expectedDict := wamp.Dict{
 		"string": "string", "int": 1, "float": 1.1, "bool": true,
-		"stringNumber": `"123`, "stringFloat": "1.23", "stringBool": "true",
+		"stringNumber": []byte(`"123`), "stringFloat": []byte("1.23"), "stringBool": []byte("true"),
 		"list": []interface{}{
 			"group_1", "group_2", 1.1, true,
 		},

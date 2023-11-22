@@ -73,9 +73,9 @@ func listToWampList(args []string) wamp.List {
 
 		switch {
 		case strings.HasPrefix(value, `'`) && strings.HasSuffix(value, `'`):
-			arguments = append(arguments, value[1:len(value)-1])
+			arguments = append(arguments, []byte(value[1:len(value)-1]))
 		case strings.HasPrefix(value, `"`) && strings.HasSuffix(value, `"`):
-			arguments = append(arguments, value[1:len(value)-1])
+			arguments = append(arguments, []byte(value[1:len(value)-1]))
 		default:
 			if number, errNumber := strconv.Atoi(value); errNumber == nil {
 				arguments = append(arguments, number)
@@ -108,9 +108,9 @@ func dictToWampDict(kwargs map[string]string) wamp.Dict {
 
 		switch {
 		case strings.HasPrefix(value, `'`) && strings.HasSuffix(value, `'`):
-			keywordArguments[key] = value[1 : len(value)-1]
+			keywordArguments[key] = []byte(value[1 : len(value)-1])
 		case strings.HasPrefix(value, `"`) && strings.HasSuffix(value, `"`):
-			keywordArguments[key] = value[1 : len(value)-1]
+			keywordArguments[key] = []byte(value[1 : len(value)-1])
 		default:
 			if number, errNumber := strconv.Atoi(value); errNumber == nil {
 				keywordArguments[key] = number
